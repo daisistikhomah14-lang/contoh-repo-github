@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="idn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sayang kamu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blush: #FFE8EE;
+  --blush-deep: #FBD4E0;
+  --rose: #D6597A;
+  --rose-deep: #B8425F;
+  --plum: #4A2438;
+  --plum-soft: #7A4A5D;
+  --cream: #FFFBF8;
+  --gold: #C9A66B;
+}
+
+*{box-sizing:border-box;}
+
+html,body{
+  margin:0; padding:0; min-height:100%;
+  font-family:'Quicksand', sans-serif;
+  overflow-x:hidden;
+  color: var(--plum);
+}
+
+.bg-photo{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+
+.bg-overlay{
+  position:fixed;
+  inset:0;
+  background: linear-gradient(180deg, rgba(30,10,20,0.55) 0%, rgba(30,10,20,0.35) 45%, rgba(30,10,20,0.65) 100%);
+  z-index:-1;
+}
+
+.stage{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 48px 16px;
+  position:relative;
+}
+
+.hearts{
+  position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0;
+}
+.heart{
+  position:absolute;
+  bottom:-40px;
+  color: var(--rose);
+  opacity:0.25;
+  font-size:18px;
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp{
+  0%{ transform: translateY(0) translateX(0) rotate(0deg); opacity:0; }
+  10%{ opacity:0.3; }
+  90%{ opacity:0.3; }
+  100%{ transform: translateY(-110vh) translateX(20px) rotate(20deg); opacity:0; }
+}
+
+.card{
+  position:relative;
+  z-index:1;
+  max-width: 520px;
+  width:100%;
+  background: rgba(255, 251, 248, 0.14);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 44px 32px 36px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+  text-align:center;
+}
+
+.eyebrow{
+  font-size:12px;
+  letter-spacing: 1.5px;
+  text-transform:uppercase;
+  color: var(--gold);
+  margin: 0 0 8px;
+}
+
+.names{
+  font-family:'Fraunces', serif;
+  font-style: italic;
+  font-weight:500;
+  font-size: 32px;
+  color: #FFFFFF;
+  margin: 0 0 4px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+}
+
+.since-date{
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.8);
+  margin: 0 0 30px;
+}
+
+.counter{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.unit{
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px;
+  padding: 16px 6px 12px;
+}
+.unit-value{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size: 30px;
+  color: #FFFFFF;
+  line-height:1;
+  font-variant-numeric: tabular-nums;
+}
+.unit-label{
+  font-size: 11px;
+  letter-spacing:0.4px;
+  text-transform:uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-top: 6px;
+}
+
+.message{
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.92);
+  margin: 0 0 6px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.25);
+}
+.signoff{
+  font-family:'Fraunces', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+  margin-top: 20px;
+}
+
+@media (max-width: 380px){
+  .unit-value{ font-size: 22px; }
+  .names{ font-size: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .heart{ animation: none; opacity:0; }
+}
+
+</style>
+
+<img class="bg-photo" src="foto_2.jpg.jpeg" alt="foto 2.jpeg">
+<div class="bg-overlay"></div>
+<div class="hearts" id="hearts"></div>
+
+<div class="stage">
+  <div class="card">
+    <h1 class="names">Buat orang tersayangku pepes elek</h1>
+    <p class="eyebrow">sudah berjalan</p>
+    <p class="since-date">sejak 14 september 2025</p>
+
+    <div class="counter">
+      <div class="unit">
+        <div class="unit-value" id="days">0</div>
+        <div class="unit-label">hari</div>
+      </div>
+      <div class="unit">
+        <div class="unit-value" id="hours">0</div>
+        <div class="unit-label">jam</div>
+      </div>
+      <div class="unit">
+        <div class="unit-value" id="minutes">0</div>
+        <div class="unit-label">menit</div>
+      </div>
+      <div class="unit">
+        <div class="unit-value" id="seconds">0</div>
+        <div class="unit-label">detik</div>
+      </div>
+    </div>
+
+    <p class="message">sayaangg ga kerasa yaa dah mau 1 tahun aja kita, makasih yaa bubb  uda masuk ke dalam hidupku aku bersyukur banget di pertemukan sama orang kek bububcuu, apapun tentang kamuu semua nya aku suka bubbb aku bener² se cinta iku sama kamuu, aku bahagia bangett bubb dengan guyonan mu sg ga jelas tingkah mu sg ga jelas wkwkw, makasih ya sayangg kamu dah cinta sama aku dengan kekurangan yang aku punya, tetep jadi orang favoritku yaa sayang seterus nya mwaahh, bubb kata kata mu yang malam waktu itu masih keinget baik di aku, makasih banyak bubb pengen nangis akuu.</p>
+    <p class="message">I LOVE U MORE THAN U KNOW BUBB.</p>
+
+    <p class="signoff">- dari inces yang selalu sayang sama pepes</p>
+  </div>
+</div>
+
+<script>
+
+const heartsContainer = document.getElementById('hearts');
+for(let i=0; i<10; i++){
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.textContent = '♥';
+  h.style.left = (Math.random()*100) + '%';
+  h.style.fontSize = (12 + Math.random()*14) + 'px';
+  h.style.animationDuration = (10 + Math.random()*10) + 's';
+  h.style.animationDelay = (Math.random()*10) + 's';
+  heartsContainer.appendChild(h);
+}
+
+// Tanggal mulai (ubah di sini kalau tanggalnya beda) 
+// format: new Date(tahun, bulan, tanggal, jam, menit, detik)
+// PERHATIAN: bulan dimulai dari 0 -> Januari=0, September=8
+const startDate = new Date(2025, 8, 14, 0, 0, 0);
+
+// --- Ambil elemen-elemen angka dari HTML ---
+const daysEl = document.getElementById('days');
+const hoursEl = document.getElementById('hours');
+const minutesEl = document.getElementById('minutes');
+const secondsEl = document.getElementById('seconds');
+
+function pad(n){ return n.toString().padStart(2, '0'); }
+
+function updateCounter(){
+  const now = new Date();
+  let diff = now - startDate;
+  if(diff < 0) diff = 0;
+
+  const totalSeconds = Math.floor(diff / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  daysEl.textContent = days;
+  hoursEl.textContent = pad(hours);
+  minutesEl.textContent = pad(minutes);
+  secondsEl.textContent = pad(seconds);
+}
+
+updateCounter();
+setInterval(updateCounter, 1000);
+
+</script>
+</body>
+</html>
